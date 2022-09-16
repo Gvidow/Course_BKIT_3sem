@@ -9,8 +9,8 @@ class MismatchError(Exception):
 class SquaredRoot:
     def __init__(self, a, b, c):
         if a == 0.0:
-            raise MismatchError("Уравнение с такими коэффициентами \
-            не является квадратным")
+            raise MismatchError("Уравнение с такими коэффициентами " +
+                                "не является квадратным")
         self.a = a
         self.b = b
         self.c = c
@@ -29,8 +29,8 @@ class SquaredRoot:
 class BiSquareRoot:
     def __init__(self, a, b, c):
         if a == 0.0:
-            raise MismatchError("Уравнение с такими коэффициентами не \
-                является биквадратным")
+            raise MismatchError("Уравнение с такими коэффициентами не " +
+                                "является биквадратным")
         self.a = a
         self.b = b
         self.c = c
@@ -39,8 +39,8 @@ class BiSquareRoot:
         try:
             equation = SquaredRoot(self.a, self.b, self.c)
         except MismatchError:
-            raise MismatchError("Уравнение с такими коэффициентами не \
-                является биквадратным")
+            raise MismatchError("Уравнение с такими коэффициентами не " +
+                                "является биквадратным")
         except Exception:
             return []
         roots = equation.calculate()
@@ -49,29 +49,30 @@ class BiSquareRoot:
             if i == 0.0:
                 res.append(0.0)
             else:
-                res.extend((-i, i))
+                root = math.sqrt(i)
+                res.extend((-root, root))
         return res
 
 
-def parse_float(string):
+def update_list_factors(lst, val):
     try:
-        val = float(string)
+        lst.append(float(val))
     except ValueError:
-        return
+        return lst
     except Exception:
-        return
-    return val
+        return lst
+    return lst
 
 
 def read_factors():
     lst = []
     name_factors = ["a", "b", "c"]
     for i in sys.argv[1:]:
-        lst.append(parse_float(i))
+        lst = update_list_factors(lst, i)
         if len(lst) == 3:
             return lst
     while len(lst) != 3:
-        lst.append(parse_float(input(f"{name_factors[len(lst)]}: ")))
+        lst = update_list_factors(lst, input(f"{name_factors[len(lst)]}: "))
     return lst
 
 
