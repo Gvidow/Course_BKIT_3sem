@@ -66,7 +66,10 @@ def read_factors():
         if len(lst) == 3:
             return lst
     while len(lst) != 3:
-        lst = update_list_factors(lst, input(f"{name_factors[len(lst)]}: "))
+        lst = update_list_factors(
+            lst,
+            input(f"введите коэффициент {name_factors[len(lst)]}: ")
+                    )
     return lst
 
 
