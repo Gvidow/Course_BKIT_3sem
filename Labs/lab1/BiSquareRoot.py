@@ -36,13 +36,7 @@ class BiSquareRoot:
         self.c = c
 
     def calculate(self):
-        try:
-            equation = SquaredRoot(self.a, self.b, self.c)
-        except MismatchError:
-            raise MismatchError("Уравнение с такими коэффициентами не " +
-                                "является биквадратным")
-        except Exception:
-            return []
+        equation = SquaredRoot(self.a, self.b, self.c)
         roots = equation.calculate()
         res = []
         for i in list(filter(lambda x: x >= 0, roots)):
