@@ -39,7 +39,7 @@ class BiSquareRoot:
         equation = SquaredRoot(self.a, self.b, self.c)
         roots = equation.calculate()
         res = []
-        for i in list(filter(lambda x: x >= 0, roots)):
+        for i in list(filter(lambda x: x >= 0.0, roots)):
             if i == 0.0:
                 res.append(0.0)
             else:
