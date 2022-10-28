@@ -1,5 +1,4 @@
 import math
-from tarfile import FIFOTYPE
 from lab_python_oop.figure import Figure
 from lab_python_oop.color import FigureColor
 
