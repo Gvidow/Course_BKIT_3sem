@@ -62,8 +62,7 @@ schoolboy_class = [
     SchoolboyClass(3, 4),
     SchoolboyClass(7, 1),
     SchoolboyClass(4, 5),
-    SchoolboyClass(5, 1),
-    SchoolboyClass(5, 4)
+    SchoolboyClass(5, 1)
 ]
 
 
@@ -103,7 +102,8 @@ def main():
                                       scb.id == mm.schoolboy_id)]
             if len(list_class_for_scb) > 0:
                 res3[scb.fio] = list_class_for_scb
-    draw(("1", "2"), [(scb, ", ".join(lst)) for scb, lst in res3.items()])
+    draw(("ФИО", "Названия классов"),
+         [(scb, ", ".join(lst)) for scb, lst in res3.items()])
 
 
 main()
