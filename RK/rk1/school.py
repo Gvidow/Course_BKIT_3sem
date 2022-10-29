@@ -78,9 +78,9 @@ def main():
         print(row)
 
     print("\nЗадание Б2")
-    schoolboy_in_class = Counter()
-    for _, _, class_name, class_id in list_schoolboy_class:
-        schoolboy_in_class[(class_id, class_name)] += 1
+    schoolboy_in_class = Counter((class_id, class_name)
+                                 for _, _, class_name, class_id
+                                 in list_schoolboy_class)
     res2 = sorted([(cls[1], cou_scb)
                    for cls, cou_scb in schoolboy_in_class.items()],
                   key=itemgetter(1))
