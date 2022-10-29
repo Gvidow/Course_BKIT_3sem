@@ -1,5 +1,6 @@
 from operator import itemgetter
 from collections import Counter
+from prettytable import PrettyTable
 
 
 class Schoolboy:
@@ -66,6 +67,13 @@ schoolboy_class = [
 ]
 
 
+def draw(name_of_fields, data):
+    table = PrettyTable(name_of_fields)
+    table.align = "l"
+    table.add_rows(data)
+    print(table)
+
+
 def main():
     print("Задание Б1")
     list_schoolboy_class = [(scb.fio, scb.old, cls.name, cls.id)
@@ -74,8 +82,7 @@ def main():
                             if scb.class_id == cls.id]
     res1 = sorted(map(lambda x: x[:-1], list_schoolboy_class),
                   key=itemgetter(0))
-    for row in res1:
-        print(row)
+    draw(("ФИО", "Возраст", "Название класса"), res1)
 
     print("\nЗадание Б2")
     schoolboy_in_class = Counter((class_id, class_name)
@@ -84,8 +91,7 @@ def main():
     res2 = sorted([(cls[1], cou_scb)
                    for cls, cou_scb in schoolboy_in_class.items()],
                   key=itemgetter(1))
-    for row in res2:
-        print(row)
+    draw(("Название класса", "Количество учеников"), res2)
 
     print("\nЗадание Б3")
     res3 = {}
@@ -97,8 +103,7 @@ def main():
                                       scb.id == mm.schoolboy_id)]
             if len(list_class_for_scb) > 0:
                 res3[scb.fio] = list_class_for_scb
-    for scb, lst in res3.items():
-        print(scb, lst)
+    draw(("1", "2"), [(scb, ", ".join(lst)) for scb, lst in res3.items()])
 
 
 main()
