@@ -1,5 +1,3 @@
-from platform import java_ver
-import re
 
 
 def sort_with_lambda(lst):

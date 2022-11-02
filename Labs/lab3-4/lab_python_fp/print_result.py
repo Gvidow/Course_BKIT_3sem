@@ -14,8 +14,15 @@ def print_result(func):
 
 
 @print_result
-def t():
-    return {3:3, 4:4}
+def return_dict():
+    return {"one": 1, "two": 2}
 
 
-t()
+@print_result
+def return_list():
+    return [1, 2, 3, 4, 5]
+
+
+return_dict()
+print("===========")
+return_list()
