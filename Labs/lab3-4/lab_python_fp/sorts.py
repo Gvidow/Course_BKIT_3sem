@@ -1,5 +1,3 @@
-
-
 def sort_with_lambda(lst):
     return sorted(lst, key=lambda x: abs(x), reverse=True)
 

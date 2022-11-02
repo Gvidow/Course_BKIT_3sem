@@ -23,6 +23,7 @@ def return_list():
     return [1, 2, 3, 4, 5]
 
 
-return_dict()
-print("===========")
-return_list()
+if __name__ == "__main__":
+    return_dict()
+    print("===========")
+    return_list()

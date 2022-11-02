@@ -25,13 +25,14 @@ class Unique:
         return current
 
 
-data = [1, 1, 1, 1, 1, 2, 2, 2, 2, 2]
-print(list(Unique(data)))
+if __name__ == "__main__":
+    data = [1, 1, 1, 1, 1, 2, 2, 2, 2, 2]
+    print(list(Unique(data)))
 
-data = gen_random(10, 1, 3)
-print(list(Unique(data)))
+    data = gen_random(10, 1, 3)
+    print(list(Unique(data)))
 
-data = ["a", "A", "b", "B", "a", "A", "b", "B"]
-print(list(Unique(data)))
+    data = ["a", "A", "b", "B", "a", "A", "b", "B"]
+    print(list(Unique(data)))
 
-print(list(Unique(data, ignore_case=True)))
+    print(list(Unique(data, ignore_case=True)))

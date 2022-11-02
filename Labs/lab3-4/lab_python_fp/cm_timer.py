@@ -23,10 +23,11 @@ def cm_timer_2():
         print(time.time() - start)
 
 
-with cm_timer_1():
-    time.sleep(2)
-    print("exit cm_timer_1")
-print("==================")
-with cm_timer_2():
-    time.sleep(1)
-    print("exit cm_timer_2")
+if __name__ == "__main__":
+    with cm_timer_1():
+        time.sleep(2)
+        print("exit cm_timer_1")
+    print("==================")
+    with cm_timer_2():
+        time.sleep(1)
+        print("exit cm_timer_2")
