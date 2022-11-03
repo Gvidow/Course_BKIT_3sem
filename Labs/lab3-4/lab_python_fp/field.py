@@ -3,7 +3,6 @@ from collections.abc import Generator
 
 def field(lst, *args):
     # assert len(lst) > 0
-    print(args)
     if len(args) == 0:
         return
     if len(args) == 1:

@@ -22,7 +22,7 @@ with open(path) as f:
 
 @print_result
 def f1(arg):
-    return Unique(sort_not_use_lambda(arg))
+    return Unique(sorted(arg, key=lambda x: x.lower()), ignore_case=True)
 
 
 @print_result
@@ -32,7 +32,7 @@ def f2(arg):
 
 @print_result
 def f3(arg):
-    return map(lambda x: x + "с опытом Python ", arg)
+    return map(lambda x: x + " с опытом Python ", arg)
 
 
 @print_result
@@ -45,4 +45,4 @@ def f4(arg):
 
 if __name__ == '__main__':
     with cm_timer_1():
-        print(*f2(f3(f4(data))), sep = "\n")
+        print(*f1(f2(f3(f4(data)))), sep = "\n")
