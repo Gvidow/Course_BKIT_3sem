@@ -1,5 +1,3 @@
-from inspect import isgeneratorfunction
-
 def catalan_numbers_gen():
     num, prev = 1, 1
     while True:
