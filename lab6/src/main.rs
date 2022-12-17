@@ -1,31 +1,25 @@
 use std::io;
 use std::env;
 use std::mem;
-enum SquareRootResult {
-    /// Unit-тип
-    NoRoots,
-    /// Один корень - кортежная структура
-    OneRoot(f64),
-    /// С-подобная структура
-    TwoRoots { root1: f64, root2: f64 },
 
+#[derive(Debug, Copy, Clone, PartialEq)]
+enum SquareRootResult {
+    NoRoots,
+    OneRoot(f64),
+    TwoRoots { root1: f64, root2: f64 },
     ThreeRoots { root1: f64, root2: f64, root3:f64 },
     FourRoots { root1: f64, root2: f64, root3:f64, root4:f64 },
 }
+
 struct Equation {
-    /// Коэффициент A
     a: f64,
-    /// Коэффициент B
     b: f64,
-    /// Коэффициент C
     c: f64,
-    /// Дискриминант
     diskr: f64,
-    /// Корни
     res: SquareRootResult,
 }
+
 impl Equation {
-    /// Функция вычисления корней
     fn calculate_roots(&mut self) {
         self.diskr = self.b.powi(2) - 4.0 * self.a * self.c;
         self.res = {
@@ -67,7 +61,6 @@ impl Equation {
         };
     }
 
-    /// Ввод одного коэффициента
     fn set_coef(&mut self) {
         let factors = read_factors();
         self.a = factors[0];
@@ -114,6 +107,7 @@ fn read_factors() -> [f64; 3] {
     }
     return factors;
 }
+
 macro_rules! root_derivation {
     ($e:expr) => {{
         {
@@ -130,6 +124,7 @@ macro_rules! root_derivation {
         }
     }};
 }
+
 fn main() {
     let mut eq = Equation {
         a: 0.0,
@@ -141,4 +136,47 @@ fn main() {
     eq.set_coef();
     eq.calculate_roots();
     root_derivation!(eq);
+}
+
+
+#[test]
+fn test_calc1() {
+    use SquareRootResult::*;
+    let mut eq = Equation {
+        a: 1.24,
+        b: 54.12,
+        c: 5.0,
+        diskr: 0.0,
+        res: SquareRootResult::NoRoots,
+    };
+    eq.calculate_roots();
+    assert_eq!(eq.res, NoRoots);
+}
+
+#[test]
+fn test_calc2() {
+    use SquareRootResult::*;
+    let mut eq = Equation {
+        a: 500.0,
+        b: 5500.0,
+        c: -23068.8,
+        diskr: 0.0,
+        res: SquareRootResult::NoRoots,
+    };
+    eq.calculate_roots();
+    assert_eq!(eq.res, TwoRoots { root1: -1.8, root2: 1.8 });
+}
+
+#[test]
+fn test_calc3() {
+    use SquareRootResult::*;
+    let mut eq = Equation {
+        a: 2.0,
+        b: -50.0,
+        c: 0.0,
+        diskr: 0.0,
+        res: SquareRootResult::NoRoots,
+    };
+    eq.calculate_roots();
+    assert_eq!(eq.res, ThreeRoots { root1: 0.0, root2: -5.0, root3: 5.0 });
 }
